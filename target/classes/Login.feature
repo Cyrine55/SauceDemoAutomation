@@ -17,3 +17,12 @@ Feature: Authentification
     And saisir mdp valide
     And cliquer sur le bouton Login
     Then verifier message erreur 'Epic sadface: Username is required' affiche 
+
+    @LoginWithWrongCredentials
+    Scenario: Verification authentification invalide avec manque saisi username et password
+    Given utilisateur ouvre l application
+    When saisir des identifiants invalides 
+    |Username| usertest|
+    |Mot de passe  |test123 fg|
+    Then verifier affichage message 'Epic sadface: Username and password do not match any user in this service'
+    

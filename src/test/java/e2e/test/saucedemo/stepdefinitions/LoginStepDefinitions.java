@@ -4,11 +4,15 @@ package e2e.test.saucedemo.stepdefinitions;
 
 
 
+import java.util.List;
+import java.util.Map;
+
 import org.junit.Assert;
 
 import e2e.test.saucedemo.page_objects.LoginPage;
 import e2e.test.saucedemo.utils.ConfigFileReader;
 import e2e.test.saucedemo.utils.Setup;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -23,10 +27,6 @@ public class LoginStepDefinitions {
 		loginPage = new LoginPage();
 		configFileReader = new ConfigFileReader();
 	}
-	
-	
-	
-	
 	
 	@Given("utilisateur ouvre l application")
 	public void utilisateurOuvreLApplication() {
@@ -63,6 +63,21 @@ public class LoginStepDefinitions {
 	  String expectedErrorusernameMsg="Epic sadface: Username is required";
 	  Assert.assertEquals(actualErrorusernameMsg, expectedErrorusernameMsg);
 	}
+
+	@When("saisir des identifiants invalides")
+	public void saisirDesIdentifiantsInvalides(DataTable dataTableLogin) {
+		Map<String, String> dataMap = dataTableLogin.asMap(String.class, String.class);
+		loginPage.saisirInvalidIdentifiants(dataMap.get("Username"), dataMap.get("Mot de passe"));
+	}
+
+
+
+	
+	@Then("verifier affichage message {string}")
+	public void verifierAffichageMessage(String string) {
+	   
+	}
+
 
 
 

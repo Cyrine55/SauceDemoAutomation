@@ -43,8 +43,7 @@ public class LoginPage extends BasePage {
 		seleniumUtils.writeText(passwordField, password);
 	}
 	public void cliquerLoginBtn()  {
-		By loginBtnLocator = By.xpath("//input[@type='password']");
-		seleniumUtils.waitForElementToBeClickable(loginBtnLocator);
+		seleniumUtils.waitForElementToBeClickable(loginBtn);
 		seleniumUtils.click(loginBtn);
 		
 	}
@@ -60,5 +59,10 @@ public class LoginPage extends BasePage {
 		wait.waitUntilElementVisible(driver, msgErrorUsername);
 		String errorUsernameMsg= msgErrorUsername.getText();
 		return errorUsernameMsg ;
+	}
+	
+	public void saisirInvalidIdentifiants(String invalidUsername, String Mdp) {
+		seleniumUtils.writeText(usernameField, invalidUsername);
+		seleniumUtils.writeText(passwordField, Mdp);
 	}
 }
