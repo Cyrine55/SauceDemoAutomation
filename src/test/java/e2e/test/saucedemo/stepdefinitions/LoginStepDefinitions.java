@@ -2,6 +2,10 @@ package e2e.test.saucedemo.stepdefinitions;
 
 
 
+
+
+import org.junit.Assert;
+
 import e2e.test.saucedemo.page_objects.LoginPage;
 import e2e.test.saucedemo.utils.ConfigFileReader;
 import e2e.test.saucedemo.utils.Setup;
@@ -50,7 +54,19 @@ public class LoginStepDefinitions {
 	public void redirectionAuMenuSwagLabs() {
 	 String actualUrl=loginPage.getHomeURL () ;
 	 String exceptedUrl="https://www.saucedemo.com/inventory.html";
+	 Assert.assertEquals(actualUrl, exceptedUrl);
 	}
+ 
+	@Then("verifier message erreur {string} affiche")
+	public void verifierMessageErreurAffiche(String uernameEmptyMsg) {
+	  String actualErrorusernameMsg=loginPage.getErrorEmptyUsername();
+	  String expectedErrorusernameMsg="Epic sadface: Username is required";
+	  Assert.assertEquals(actualErrorusernameMsg, expectedErrorusernameMsg);
+	}
+
+
+
+	
 
 
 

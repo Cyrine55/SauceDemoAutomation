@@ -1,7 +1,7 @@
 
 @Login
 Feature: Authentification
-  je veux tester la partie authentification 
+  j
 
   @ValidLogin
   Scenario: Verification authentification
@@ -11,4 +11,9 @@ Feature: Authentification
     And cliquer sur le bouton Login
     Then Redirection au menu Swag Labs
     
-  
+    @InValidLoginWithEmptyUsername
+    Scenario: Verification login sans saisir username
+    Given utilisateur ouvre l application
+    And saisir mdp valide
+    And cliquer sur le bouton Login
+    Then verifier message erreur 'Epic sadface: Username is required' affiche 

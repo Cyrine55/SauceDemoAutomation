@@ -1,7 +1,7 @@
 
 @Login
-Feature: Title of your feature
-  I want to use this template for my feature file
+Feature: Authentification
+  j
 
   @ValidLogin
   Scenario: Verification authentification
@@ -11,13 +11,9 @@ Feature: Title of your feature
     And cliquer sur le bouton Login
     Then Redirection au menu Swag Labs
     
-  @tag2
-  Scenario Outline: Title of your scenario outline
-    Given I want to write a step with <name>
-    When I check for the <value> in step
-    Then I verify the <status> in step
-
-    Examples: 
-      | name  | value | status  |
-      | name1 |     5 | success |
-      | name2 |     7 | Fail    |
+    @InValidLoginWithEmptyUsername
+    Scenario: Verification login sans saisir username
+    Given utilisateur ouvre l application
+    And saisir mdp valide
+    And cliquer sur le bouton Login
+    Then verifier message erreur 'Epic sadface: Username is required' affiche 
