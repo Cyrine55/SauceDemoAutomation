@@ -23,6 +23,7 @@ Feature: Authentification
     Given utilisateur ouvre l application
     When saisir des identifiants invalides 
     |Username| usertest|
-    |Mot de passe  |test123 fg|
+    |mdp  |test123 fg|
+    And cliquer sur le bouton Login
     Then verifier affichage message 'Epic sadface: Username and password do not match any user in this service'
     

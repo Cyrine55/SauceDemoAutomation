@@ -21,7 +21,8 @@ public class LoginPage extends BasePage {
 	private static WebElement loginBtn;
 	@FindBy(how = How.XPATH, using = "//div[@class='error-message-container error']/h3[@data-test='error']")
 	private static WebElement msgErrorUsername;
-
+	@FindBy(how = How.XPATH, using = "//div[@class='error-message-container error']/h3[@data-test='error']")
+	private static WebElement msgErrorCredential;
 	SeleniumUtils seleniumUtils;
 	Wait wait;
 
@@ -64,5 +65,10 @@ public class LoginPage extends BasePage {
 	public void saisirInvalidIdentifiants(String invalidUsername, String Mdp) {
 		seleniumUtils.writeText(usernameField, invalidUsername);
 		seleniumUtils.writeText(passwordField, Mdp);
+	}
+	
+	public String getWrongCredentialMsg() {
+		wait.waitUntilElementVisible(driver, msgErrorCredential);
+		return msgErrorCredential.getText();
 	}
 }

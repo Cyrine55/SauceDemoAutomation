@@ -67,15 +67,16 @@ public class LoginStepDefinitions {
 	@When("saisir des identifiants invalides")
 	public void saisirDesIdentifiantsInvalides(DataTable dataTableLogin) {
 		Map<String, String> dataMap = dataTableLogin.asMap(String.class, String.class);
-		loginPage.saisirInvalidIdentifiants(dataMap.get("Username"), dataMap.get("Mot de passe"));
+		loginPage.saisirInvalidIdentifiants(dataMap.get("Username"), dataMap.get("mdp"));
 	}
 
 
 
 	
 	@Then("verifier affichage message {string}")
-	public void verifierAffichageMessage(String string) {
-	   
+	public void verifierAffichageMessage(String expectedCredentialerror) {
+	 String actualCredentialError= loginPage.getWrongCredentialMsg() ;
+	 Assert.assertEquals(actualCredentialError, expectedCredentialerror);
 	}
 
 
