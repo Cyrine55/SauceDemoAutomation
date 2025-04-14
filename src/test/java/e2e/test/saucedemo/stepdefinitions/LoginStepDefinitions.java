@@ -2,9 +2,6 @@ package e2e.test.saucedemo.stepdefinitions;
 
 
 
-
-
-import java.util.List;
 import java.util.Map;
 
 import org.junit.Assert;
@@ -70,19 +67,11 @@ public class LoginStepDefinitions {
 		loginPage.saisirInvalidIdentifiants(dataMap.get("Username"), dataMap.get("mdp"));
 	}
 
-
-
-	
 	@Then("verifier affichage message {string}")
 	public void verifierAffichageMessage(String expectedCredentialerror) {
 	 String actualCredentialError= loginPage.getWrongCredentialMsg() ;
 	 Assert.assertEquals(actualCredentialError, expectedCredentialerror);
 	}
-
-
-
-
-	
 
 
 
