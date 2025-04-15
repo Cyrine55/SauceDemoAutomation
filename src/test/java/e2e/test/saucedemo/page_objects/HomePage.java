@@ -54,4 +54,14 @@ public class HomePage extends BasePage{
 		Collections.sort(triPrices);
 		 return actualPrices.equals(triPrices);
 	}
+	
+	public Boolean isPriceSortedDescending() {
+		List <Double> actualPrices=getProductPrices();
+		List <Double> desortedPrices=new ArrayList<>(actualPrices);
+		Collections.sort(desortedPrices, Collections.reverseOrder());
+		
+			return actualPrices.equals(desortedPrices);
+		
+	}
+	
 }

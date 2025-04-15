@@ -12,3 +12,12 @@ Feature: Trier la liste des produits
     And cliquer sur le choix 'Price (low to high)' du dropdown
     Then verifier le tri des produits est croissant
  
+ 
+  @TriDeCroissant
+  Scenario: Tri des produits croissant
+    Given utilisateur ouvre l application
+    When saisir username valide
+    And saisir mdp valide
+    And cliquer sur le bouton Login
+    And cliquer sur le choix 'Price (high to low)' du dropdown
+    Then verifier que les prix affiches en mode decroissant

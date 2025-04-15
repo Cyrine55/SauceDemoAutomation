@@ -33,5 +33,14 @@ public void verifierLeTriDesProduitsEstCroissant() {
 }
 
 
+@Then("verifier que les prix affiches en mode decroissant")
+public void verifierQueLesPrixAffichesEnModeDecroissant() {
+	Assert.assertTrue("Les prix ne sont pas triés du plus haut au plus bas", 
+	           homePage.isPriceSortedDescending()); 
+}
+
+
+
+
 
 }
