@@ -1,5 +1,8 @@
 package e2e.test.saucedemo.utils;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
@@ -39,8 +42,18 @@ public class Setup {
 		switch(browser) {
 		case "chrome" :
 			ChromeOptions chromeOptions = new ChromeOptions();
+			chromeOptions.setExperimentalOption("useAutomationExtension", false);
+			chromeOptions.addArguments("--disable-blink-features=AutomationControlled");
+	        chromeOptions.addArguments("--incognito");
 			chromeOptions.addArguments("start-maximized");
+			
+			 Map<String, Object> prefs = new HashMap<>();
+			    prefs.put("credentials_enable_service", false);
+			    prefs.put("profile.password_manager_enabled", false);
+			    chromeOptions.setExperimentalOption("prefs", prefs);
+			    
 			driver = new ChromeDriver(chromeOptions);
+			
 			break;
 			
 		case "firefox":
@@ -66,7 +79,7 @@ public class Setup {
 	}
 	
 	
-	@After
+	/*@After
 	public void tearDown(Scenario scenario) {
 		if (scenario.isFailed()) {
 			final byte [] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
@@ -74,7 +87,7 @@ public class Setup {
 		}
 		driver.quit();
 		LOGGER.info("Scenario: " +scenario.getName() + "- finished.Status" +  scenario.getStatus());
-	}
+	}*/
 	
 	
 }
