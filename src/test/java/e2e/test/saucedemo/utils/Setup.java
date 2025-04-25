@@ -23,6 +23,7 @@ public class Setup {
 	
 	private static WebDriver driver;
 	private static final Logger LOGGER = (Logger) LogManager.getLogger(Setup.class.getName());
+	//private static final Logger LOGGER = LogManager.getLogger(Setup.class);
 	/**
 	 * This method is used to open browser. this method is called before the
 	 * invocation of each test method in the given class. In this method we need to pass browser name which will invoke the 

@@ -3,6 +3,8 @@ package e2e.test.saucedemo.page_objects;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -22,6 +24,7 @@ public class AddProductInCart extends BasePage {
 	private static List<WebElement> productsNameList;
 
 	SeleniumUtils seleniumUtils;
+	private static final Logger LOGGER = LogManager.getLogger(AddProductInCart.class);
 
 	public AddProductInCart() {
 		super(Setup.getDriver());
@@ -29,6 +32,7 @@ public class AddProductInCart extends BasePage {
 	}
 
 	public void clickOnAddToCart(int index) {
+		 LOGGER.info(">>> TEST DE LOGGER - CETTE LIGNE DEVRAIT APPARAÎTRE <<<");
 		System.out.println(listAddToCartBtn.size());
 		if (index >= 0 && index < listAddToCartBtn.size()) {
 			WebElement btn = listAddToCartBtn.get(index);
@@ -45,10 +49,11 @@ public class AddProductInCart extends BasePage {
 		for (int i = 0; i < productsNameList.size(); i++) {
 			String nameProduit = productsNameList.get(i).getText().trim();
 			if (nameProduit.equalsIgnoreCase(productName)) {
-				System.out.println("Nom produit trouvé : " + nameProduit);
-				System.out.println("Bouton associé : " + listAddToCartBtn.get(i).getText());
+				LOGGER.info("Nom produit trouvé : " + nameProduit);
+				LOGGER.info("Bouton associé : " + listAddToCartBtn.get(i).getText());
 				WebElement btn = listAddToCartBtn.get(i);
 				seleniumUtils.click(btn);
+				break;
 			}
 		}
 	}
@@ -59,7 +64,7 @@ public class AddProductInCart extends BasePage {
 			for (int i = 0; i < productsNameList.size(); i++) {
 				String nameProduit = productsNameList.get(i).getText().trim();
 				if (nameProduit.equalsIgnoreCase(prod.trim())) {
-					System.out.println("Produit trouvé : " + nameProduit);
+					LOGGER.info("Produit trouvé : " + nameProduit);
 					seleniumUtils.click(listAddToCartBtn.get(i));
 					break;
 				}

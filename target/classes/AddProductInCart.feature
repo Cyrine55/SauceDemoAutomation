@@ -32,6 +32,5 @@ Scenario: Add product in cart with index
     When cliquer sur le bouton panier
     Then verifier les produits correspondants affiches 
     Examples:
-  | nomProduits  |
-  | "Sauce Labs Onesie"|
-  | "Sauce Labs Backpack"|
+ | nomProduits        |
+  | "Sauce Labs Onesie, Sauce Labs Backpack" |

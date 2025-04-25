@@ -23,6 +23,8 @@ public class CartPage extends BasePage {
 
 	@FindBy(how = How.CSS, using = ".inventory_item_name")
 	private static List<WebElement> listName;
+	@FindBy(how = How.ID, using = "checkout")
+	private static WebElement checkoutBtn;
 
 	SeleniumUtils seleniumUtils;
 
@@ -58,7 +60,7 @@ public class CartPage extends BasePage {
 		List<String> produitsAffiches = getProductNameOnCart();
 
 		for (String produitAttendu : produitsList) {
-			boolean produitTrouve = true;
+			boolean produitTrouve = false;
 			for (String produitsAffiche : produitsAffiches) {
 				if (produitAttendu.trim().equalsIgnoreCase(produitsAffiche.trim())) {
 					produitTrouve = true;
@@ -68,6 +70,10 @@ public class CartPage extends BasePage {
 		}
 		return true;
 
+	}
+	
+	public void clickCheckoutBtn() {
+		seleniumUtils.click(checkoutBtn);
 	}
 
 }
