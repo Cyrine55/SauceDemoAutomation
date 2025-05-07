@@ -17,3 +17,4 @@ Scenario: Verify checkout information
       
     And cliquer sur le boutonContinue 'Continue'
     Then verify redirection to chekout overview page with url 'https://www.saucedemo.com/checkout-step-two.html'
+    

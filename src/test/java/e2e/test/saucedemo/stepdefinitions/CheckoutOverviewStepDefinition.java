@@ -19,12 +19,12 @@ public class CheckoutOverviewStepDefinition {
 
 	@Then("verify total price displayed with exact value")
 	public void verifyTotalPriceDisplayedWithExactValue() {
-		double expTotal = chechkoutOverviewPage.getDisplayedPrice();
-		double actualectedTotal=chechkoutOverviewPage.getPrices();
-		System.out.println("Calculé : " + expTotal + " / Affiché : " + actualectedTotal);
+		double Total = chechkoutOverviewPage.getDisplayedPrice();
+		double itemTotal=chechkoutOverviewPage.itemTotalWithTaxe();
+		System.out.println("Total : " + Total + " / itemTotal : " + itemTotal);
 		//Assert.assertEquals(expTotal, actualectedTotal);
 		//Assert.assertEquals("ne sont pas egale",expTotal,actualectedTotal);
-		Assert.assertEquals(expTotal, actualectedTotal, 0.01); // 0.01 = tolérance
+		Assert.assertEquals(Total, itemTotal, 0.01); // 0.01 = tolérance
 	}
 
 
