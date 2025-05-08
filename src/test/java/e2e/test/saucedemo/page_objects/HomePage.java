@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -25,6 +29,7 @@ public class HomePage extends BasePage {
 	@FindBy(how = How.CSS, using = ".inventory_item_name ")
 	private static List<WebElement> listProductNames;
 
+	private static final Logger LOGGER = LogManager.getLogger(HomePage.class);
 	SeleniumUtils seleniumUtils;
 
 	public HomePage() {
@@ -46,14 +51,17 @@ public class HomePage extends BasePage {
 		}
 		return prices;
 	}
-
+	/**
+     * Récupère les prix affichés sur la page, les compare avec une version triée
+     * (en utilisant Java Streams), et retourne un booléen indiquant si l’ordre
+     * affiché est correct (ascendant).
+     */
 	public Boolean isPriceSortedAscending() {
-		List<Double> actualPrices = getProductPrices();
-		List<Double> triPrices = new ArrayList<>(actualPrices);
-		Collections.sort(triPrices);
-		System.out.println("Affiché     : " + actualPrices);
-		System.out.println("Attendu ↑   : " + triPrices);
-		return actualPrices.equals(triPrices);
+		List<Double> allPriceList=getProductPrices();
+		List<Double> triPrices=allPriceList.stream().sorted().collect(Collectors.toList());
+		 LOGGER.info("Affiché     : " + allPriceList);
+	     LOGGER.info("Attendu ↑   : " + triPrices);
+		return allPriceList.equals(triPrices);
 
 	}
 
