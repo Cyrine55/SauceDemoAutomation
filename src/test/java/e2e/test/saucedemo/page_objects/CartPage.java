@@ -26,6 +26,9 @@ public class CartPage extends BasePage {
 	@FindBy(how = How.ID, using = "checkout")
 	private static WebElement checkoutBtn;
 
+	@FindBy(how = How.CSS, using = ".btn_small.cart_button")
+	private List<WebElement> listRemoveBtn;
+
 	SeleniumUtils seleniumUtils;
 
 	public CartPage() {
@@ -71,9 +74,36 @@ public class CartPage extends BasePage {
 		return true;
 
 	}
-	
+
 	public void clickCheckoutBtn() {
 		seleniumUtils.click(checkoutBtn);
+	}
+
+	public void removeProduit(String produit) {
+		List<String> removeBtnList = new ArrayList<String>();
+		List<String> nameproduits = getProductNameOnCart();
+		for (WebElement removes : listRemoveBtn) {
+			String removeBtn = removes.getText().trim();
+			removeBtnList.add(removeBtn);
+		}
+		for (int i = 0; i < nameproduits.size(); i++) {
+			if (nameproduits.get(i).equalsIgnoreCase(produit.trim())) {
+				WebElement btnRemove = listRemoveBtn.get(i);
+				seleniumUtils.click(btnRemove);
+			}
+
+		}
+	}
+	
+	public boolean getproductRemoved(String produit) {
+		List<String> nameproduits = getProductNameOnCart();
+		for(String nom:nameproduits) {
+			if (nom.equalsIgnoreCase(produit.trim())) {	
+				return true;
+			}
+		}
+		return false;
+		
 	}
 
 }
