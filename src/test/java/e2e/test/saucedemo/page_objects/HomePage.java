@@ -28,7 +28,10 @@ public class HomePage extends BasePage {
 	private static List<WebElement> productPrice;
 	@FindBy(how = How.CSS, using = ".inventory_item_name ")
 	private static List<WebElement> listProductNames;
-
+	
+	@FindBy(how = How.XPATH, using = "//span[@class='shopping_cart_badge']")
+	private static WebElement shopIcon;
+	
 	private static final Logger LOGGER = LogManager.getLogger(HomePage.class);
 	SeleniumUtils seleniumUtils;
 
@@ -101,5 +104,17 @@ public class HomePage extends BasePage {
 		sortedAtoZ.sort(Comparator.naturalOrder());
 		return actualListNameProduct.equals(sortedAtoZ);
 	}
+	
 
+	/**
+	 * *Work for increase shop icon when adding products
+	 */
+	
+	public String verifyIncreaseShopIcon() {
+	String iconNbr=	shopIcon.getText();
+	return iconNbr;
+	
+	}
+	
+	
 }

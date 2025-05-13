@@ -68,6 +68,8 @@ public class AddProductInCart extends BasePage {
 					seleniumUtils.click(listAddToCartBtn.get(i));
 					break;
 				}
+			//int NB= productsNameList.size();
+				
 			}
 
 		}

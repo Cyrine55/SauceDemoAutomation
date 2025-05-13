@@ -12,6 +12,7 @@ public class AddProductInCartStepDefinitions {
 	CartPage cartPage;
 	int index = 3;
 	private String produitsAjoutes;
+	public static int nbProduitsAjoutes;// nouveau compteur
 	public AddProductInCartStepDefinitions() {
 		addProductInCart = new AddProductInCart();
 		cartPage = new CartPage();
@@ -48,7 +49,9 @@ public class AddProductInCartStepDefinitions {
 	@When("ajouter des produits {string}")
 	public void ajouterDesProduits(String produits) {
 		 this.produitsAjoutes = produits;
+		 nbProduitsAjoutes = produits.split(",").length;
 		addProductInCart.addManyProducts(produits);
+	
 	}
 
 	@Then("verifier les produits correspondants affiches")
