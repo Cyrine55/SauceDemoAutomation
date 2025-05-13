@@ -4,6 +4,7 @@ import org.junit.Assert;
 
 import e2e.test.saucedemo.page_objects.AddProductInCart;
 import e2e.test.saucedemo.page_objects.CartPage;
+import e2e.test.saucedemo.page_objects.HomePage;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
@@ -11,11 +12,13 @@ public class AddProductInCartStepDefinitions {
 	AddProductInCart addProductInCart;
 	CartPage cartPage;
 	int index = 3;
+	HomePage homePage;
 	private String produitsAjoutes;
 	public static int nbProduitsAjoutes;// nouveau compteur
 	public AddProductInCartStepDefinitions() {
 		addProductInCart = new AddProductInCart();
 		cartPage = new CartPage();
+		homePage=new HomePage();
 	}
 
 	@When("cliquer sur le bouton {string} pour un produit")
@@ -56,8 +59,9 @@ public class AddProductInCartStepDefinitions {
 
 	@Then("verifier les produits correspondants affiches")
 	public void verifierLesProduitsCorrespondantsAffiches() {
-		boolean result = cartPage.verifyProductsInCart(produitsAjoutes);
-	    Assert.assertTrue("Certains produits attendus ne sont pas présents dans le panier", result);
+		String nb=homePage.verifyIncreaseShopIcon();
+		Assert.assertEquals(nbProduitsAjoutes, nb);
+	  
 	}
 
 }
