@@ -19,6 +19,8 @@ public class CheckoutOverviewPage extends BasePage {
 	private static List<WebElement> priceList;
 	@FindBy(how = How.CSS, using = ".summary_total_label")
 	private static WebElement finalPrice;
+	
+	
 
 	SeleniumUtils seleniumUtils;
 	private static final Logger LOGGER = LogManager.getLogger(AddProductInCart.class);
@@ -70,4 +72,6 @@ public class CheckoutOverviewPage extends BasePage {
 		System.out.println("Total TTC : " + totalWithTax);
 		return totalWithTax;
 	}
+	
+	
 }
