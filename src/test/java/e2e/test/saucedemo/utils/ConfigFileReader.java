@@ -71,5 +71,20 @@ public class ConfigFileReader {
 		else
 			throw new RuntimeException("url not specified in the Configuration.properties file.");
 	}
+	
+	/**
+	 * Méthode pour récuperer le path du fichier excel.
+	 * 
+	 * 
+	 */
+	
+	public String getExcelFilePath() {
+	    String path = properties.getProperty("excel.filepath");
+	    if (path != null)
+	        return path;
+	    else
+	        throw new RuntimeException("excel.filepath not specified in the Configuration.properties file.");
+	}
+
 }
 
